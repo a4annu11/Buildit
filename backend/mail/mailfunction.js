@@ -31,3 +31,16 @@ export const sendResetSuccessEmail = async (to) => {
   const html = PASSWORD_RESET_SUCCESS_TEMPLATE;
   await sendEmail({ to, subject, html });
 };
+
+export const sendEmailToAdmin = async (serviceProvider) => {
+  const to = "buildit.operations@gmail.com"; // Admin email
+  const subject = "New Service Provider Verification Request";
+  const html = `
+    <p>A new service provider has registered and requires verification.</p>
+    <p><strong>Name:</strong> ${serviceProvider.name}</p>
+    <p><strong>Email:</strong> ${serviceProvider.email}</p>
+    <p>Please log in to the admin dashboard to verify this account.</p>
+  `;
+
+  await sendEmail({ to, subject, html });
+};
